@@ -1,0 +1,22 @@
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+        color: rgb(51, 162, 51);
+    }
+
+    .nav-list * {
+        color: black;
+        font-weight: 700;
+        padding: 10px;
+        text-decoration: none;
+        border-radius: 16px;
+    }
+
+    .nav-list {
+        display: flex;
+        gap: 10px;
+    }
+}

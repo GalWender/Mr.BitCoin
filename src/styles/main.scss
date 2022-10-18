@@ -1,0 +1,14 @@
+//setup
+@import './setup/variables';
+
+// basics
+@import './basics/base';
+
+
+// views
+@import './views/home';
+
+// cmps
+@import './cmps/app-header';
+@import './cmps/contact-preview';
+@import './cmps/contact-list';
