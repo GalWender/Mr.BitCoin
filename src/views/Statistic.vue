@@ -1,99 +1,36 @@
 <template>
-    <LineChartGenerator
-      :chart-options="chartOptions"
-      :chart-data="chartData"
-      :chart-id="chartId"
-      :dataset-id-key="datasetIdKey"
-      :plugins="plugins"
-      :css-classes="cssClasses"
-      :styles="styles"
-      :width="width"
-      :height="height"
-    />
-  </template>
+    <section class="charts-container">
+        <market-price-history v-if="bitcoinPrices" :data="priceData" :labels="priceLabels"/>
+    </section>
+</template>
   
-  <script>
-  import { Line as LineChartGenerator } from 'vue-chartjs'
-  import {bitcoinService} from '../services/bitcoinService.js'
-  
-  import {
-    Chart as ChartJS,
-    Title,
-    Tooltip,
-    Legend,
-    LineElement,
-    LinearScale,
-    CategoryScale,
-    PointElement
-  } from 'chart.js'
-  
-  ChartJS.register(
-    Title,
-    Tooltip,
-    Legend,
-    LineElement,
-    LinearScale,
-    CategoryScale,
-    PointElement
-  )
-  
-  export default {
-    name: 'LineChart',
-    components: {
-      LineChartGenerator
-    },
-    props: {
-      chartId: {
-        type: String,
-        default: 'line-chart'
-      },
-      datasetIdKey: {
-        type: String,
-        default: 'label'
-      },
-      width: {
-        type: Number,
-        default: 400
-      },
-      height: {
-        type: Number,
-        default: 400
-      },
-      cssClasses: {
-        default: '',
-        type: String
-      },
-      styles: {
-        type: Object,
-        default: () => {}
-      },
-      plugins: {
-        type: Array,
-        default: () => []
-      }
-    },
+<script>
+import { bitcoinService } from '../services/bitcoinService.js'
+import MarketPriceHistory from '../components/LineChart.vue'
+
+export default {
     data() {
-      return {
-        priceHistory: null,
-        chartData: {
-          labels: priceHistory.map(price => price.x.getMonth().toLocalString()),
-          datasets: [
-            {
-              label: 'Data One',
-              backgroundColor: '#f87979',
-              data: [40, 39, 10, 40, 39, 80, 40]
-            }
-          ]
-        },
-        chartOptions: {
-          responsive: true,
-          maintainAspectRatio: false
+        return {
+            bitcoinPrices: null,
         }
-      }
     },
     async created() {
-        this.priceHistory = await bitcoinService.getMarketPriceHistory()
-        console.log('this.priceHistory:', this.priceHistory)
-    }
-  }
-  </script>
+        await this.getMarketPriceHistory();
+    },
+    methods:{
+        async getMarketPriceHistory() {
+            const values = await bitcoinService.getMarketPriceHistory();
+            this.bitcoinPrices = values;
+        }
+    },
+    computed:{
+        priceLabels(){
+            return this.bitcoinPrices.map((value)=>new Date(value.x*1000).toLocaleDateString());
+        },
+        priceData(){
+            return this.bitcoinPrices.map(value=>value.y)
+        }
+    },
+    components: {MarketPriceHistory},
+}
+</script>
