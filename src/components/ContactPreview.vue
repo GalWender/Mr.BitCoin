@@ -5,12 +5,15 @@
                 <button class="btn btn-svg-close" @click.prevent="onRemoveContact(contact._id)">
                     <CloseSvg/>
                 </button>
+                <RouterLink :to="`/contact/edit/${contact._id}`" class="btn btn-svg-edit"><EditSvg/></RouterLink>
             </section>
         </RouterLink>
 </template>
 
 <script>
 import CloseSvg from '../assets/svg/close-icon.svg';
+import EditSvg from '../assets/svg/edit-icon.svg';
+
 export default {
     props: {
         contact: {
@@ -24,7 +27,8 @@ export default {
         },
     },
     components: {
-        CloseSvg
+        CloseSvg,
+        EditSvg
     }
 }
 </script>

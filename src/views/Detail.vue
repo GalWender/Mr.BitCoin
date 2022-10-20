@@ -7,16 +7,14 @@
 </template>
 
 <script>
-import {contactService} from '../services/contactService.js'
 export default {
-    data(){
-        return {
-            contact:null,
-        }
+    computed: {
+        contact(){ return this.$store.getters.contact }
     },
     async created() {
-        const _id = this.$route.params._id
-        this.contact = await contactService.getContactById(_id)
+        const contactId = this.$route.params._id
+        // this.contact = await contactService.getContactById(_id)
+        this.$store.dispatch({type: 'loadContact', contactId})
     }
 }
 </script>

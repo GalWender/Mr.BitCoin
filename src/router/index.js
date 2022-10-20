@@ -28,6 +28,10 @@ const router = createRouter({
       path: '/statistic',
       component: () => import('../views/Statistic.vue')
     },
+    {
+      path: '/contact/edit/:_id?',
+      component: () => import('../views/ContactEdit.vue')
+    }
   ]
 })
 
