@@ -4,9 +4,12 @@
 
 // basics
 @import './basics/base';
+@import './basics/helpers';
+@import './basics/layout';
 
 // views
 @import './views/home';
+@import './views/login-signup';
 
 // cmps
 @import './cmps/app-header';

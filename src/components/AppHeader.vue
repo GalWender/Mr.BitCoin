@@ -1,5 +1,5 @@
 <template>
-    <header class="app-header">
+    <header class="app-header main-layout">
         <h1 class="logo">Mr.BitCoin<span class="logo-span">.</span></h1>
         <nav class="nav-list">
             <RouterLink to="/">Home</RouterLink>

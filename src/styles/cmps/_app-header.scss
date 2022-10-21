@@ -2,9 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 100px;
 
     span {
-        color: rgb(51, 162, 51);
+        color: $clr-primary;
     }
 
     .nav-list * {
@@ -16,7 +17,11 @@
     }
 
     .nav-list {
-        display: flex;
+        display: flex; 
         gap: 10px;
+    }
+
+    .logo {
+        font-family: livic-bold;
     }
 }

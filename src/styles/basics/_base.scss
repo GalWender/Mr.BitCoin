@@ -24,7 +24,7 @@
 
 
 html {
-    // font-family: roboto-light, roboto, sofia-pro-light, Helvetica, sans-serif;
+    font-family: roboto-light, roboto, sofia-pro-light, Helvetica, sans-serif;
     font-family: roboto-light;
 } 
 
@@ -32,7 +32,6 @@ body {
     margin: 0;
     background-color: $clr-bg;
     min-height: 100vh;
-    // overflow-y: hidden;
 }
 
 h1,
@@ -45,7 +44,7 @@ h6 {
 }
 
 button {
-    // font-family: roboto, roboto-light, Helvetica, sans-serif;
+    font-family: roboto, roboto-light, Helvetica, sans-serif;
     background-color: gold;
     cursor: pointer;
     background-color: transparent;

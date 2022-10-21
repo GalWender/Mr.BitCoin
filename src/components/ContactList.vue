@@ -1,5 +1,5 @@
 <template>
-        <section class="contact-list">
+        <section class="contact-list main-layout">
             <ul>
                 <TransitionGroup name="list">
                     <li v-for="contact in contacts" :key="contact._id">

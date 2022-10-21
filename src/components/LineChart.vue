@@ -84,9 +84,9 @@ export default {
             }
         }
     },
-    async created() {
-        console.log(this.labels)
-    }
+    // async created() {
+    //     console.log(this.labels)
+    // }
 }
 
 </script>

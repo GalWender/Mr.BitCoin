@@ -1,0 +1,40 @@
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.flex.column {
+  flex-direction: column;
+}
+
+.flex.justify-center,
+.grid.justify-center {
+  justify-content: center;
+}
+
+.flex.align-center,
+.grid.align-center {
+  align-items: center;
+}
+
+.flex.space-between {
+  justify-content: space-between;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+}
+
+.clean-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.profile-img-icon {
+  border-radius: 50%;
+}
