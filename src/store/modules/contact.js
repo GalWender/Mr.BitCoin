@@ -24,11 +24,11 @@ export default {
     actions: {
         async loadContacts({ commit }) {
             const contacts = await contactService.getContacts()
-            commit({ type: 'setContacts', contacts })
+            commit({ type: 'setContacts', contacts:[...contacts] })
         },
         async loadContact({ commit }, { contactId }) {
             const contact = await contactService.getContactById(contactId)
-            commit({ type: 'setContact', contact })
+            commit({ type: 'setContact', contact:{...contact} })
         },
         async removeContact({ commit }, { contactId }) {
             await contactService.deleteContact(contactId)
@@ -36,7 +36,7 @@ export default {
         },
         async saveContact({ commit }, { contact }) {
             await contactService.saveContact(contact)
-            commit({ type: 'saveContact', contact })
+            commit({ type: 'saveContact', contact:{...contact} })
         }
     },
     getters: {
