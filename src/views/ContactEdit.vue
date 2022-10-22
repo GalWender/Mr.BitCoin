@@ -14,7 +14,6 @@ import { contactService } from '@/services/contactService.js'
 export default {
     methods: {
         async onSave() {
-            // await contactService.save(this.car)
             this.$store.dispatch({ type: 'saveContact', contact: this.contact })
             this.$router.back()
         }

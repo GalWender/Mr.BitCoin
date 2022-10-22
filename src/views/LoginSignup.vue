@@ -1,6 +1,6 @@
 <template>
     <div class="grid">
-        <form action="https://httpbin.org/post" method="POST" class="form login">
+        <form v-if="isLogin" @submit.prevent="onLogin($event)" class="form login">
 
             <div class="form__field">
                 <label for="login__username"><svg class="icon">
@@ -23,8 +23,39 @@
             </div>
 
         </form>
+        <form v-if="!isLogin" @submit.prevent="onSignup($event)" class="form login">
+            <div class="form__field">
+                <label for="signup__fullname"><svg class="icon">
+                        <use xlink:href="#icon-user"></use>
+                    </svg><span class="hidden">Fullname</span></label>
+                <input autocomplete="fullname" id="login__fullname" type="text" name="fullname" class="form__input"
+                    placeholder="Fullname" required>
+            </div>
 
-        <p class="text--center">Not a member? <a href="#">Sign up now</a> <svg class="icon">
+            <div class="form__field">
+                <label for="login__username"><svg class="icon">
+                        <use xlink:href="#icon-user"></use>
+                    </svg><span class="hidden">Username</span></label>
+                <input autocomplete="username" id="login__username" type="text" name="username" class="form__input"
+                    placeholder="Username" required>
+            </div>
+
+            <div class="form__field">
+                <label for="login__password"><svg class="icon">
+                        <use xlink:href="#icon-lock"></use>
+                    </svg><span class="hidden">Password</span></label>
+                <input id="login__password" type="password" name="password" class="form__input" placeholder="Password"
+                    required>
+            </div>
+
+            <div class="form__field">
+                <input type="submit" value="Sign Up">
+            </div>
+
+        </form>
+
+        <p v-if="isLogin" class="text--center">Not a member? <a @click="changeLoginState()">Sign up now</a> <svg
+                class="icon">
                 <use xlink:href="#icon-arrow-right"></use>
             </svg></p>
 
@@ -48,6 +79,32 @@
 
 <script>
 export default {
+    data() {
+        return {
+            isLogin: true,
+        }
+    },
+    methods: {
+        changeLoginState() {
+            this.isLogin = !this.isLogin
+        },
+        async onSignup(ev) {
+            const user = {
+                fullname: ev.target[0].value,
+                username: ev.target[1].value,
+                password: ev.target[2].value,
+            }
+            this.$store.dispatch({type: 'signup', user})
+            //fix no user first time 
 
+        },
+        async onLogin(ev) {
+            const user = {
+                username: ev.target[0].value,
+                password: ev.target[1].value,
+            }
+            this.$store.dispatch({type:'login',user})
+        }
+    }
 }
 </script>

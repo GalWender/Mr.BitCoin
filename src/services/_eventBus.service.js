@@ -1,13 +1,32 @@
-'use strict';
+function createEventEmitter() {
+    const listenersMap = {}
+    return {
+        on(evName, listener){
+            listenersMap[evName] = (listenersMap[evName])? [...listenersMap[evName], listener] : [listener]
+            return ()=>{
+                listenersMap[evName] = listenersMap[evName].filter(func => func !== listener)
+            }
+        },
+        emit(evName, data) {
+            if (!listenersMap[evName]) return
+            listenersMap[evName].forEach(listener => listener(data))
+        }
+    }
+}
 
-export const SHOW_USER_MSG = 'showUserMsg'
+export const eventBusService = createEventEmitter()
 
-import Vue from 'vue';
+export function showUserMsg(msg) {
+    eventBusService.emit('show-user-msg', msg)
+}
 
-const eventBus = new Vue();
+export function showSuccessMsg(txt) {
+    showUserMsg({txt, type: 'success'})
+}
+export function showErrorMsg(txt) {
+    showUserMsg({txt, type: 'error'})
+}
 
-export default eventBus;
-
-export function showUserMsg(txt, type='success') {
-    eventBus.$emit(SHOW_USER_MSG,{txt, type})
+export function isUsernameVerified(isVerified) {
+    eventBusService.emit('username-verify', isVerified)
 }

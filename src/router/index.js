@@ -1,13 +1,14 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import LoginSignup from '../views/LoginSignup.vue'
+import { userService } from '../services/userService.js'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      component: LoginSignup
+      component: userService.getLoggedinUser()? Home : LoginSignup
     },
     {
       path: '/about',
