@@ -1,11 +1,12 @@
 <template>
-  <section class="home" v-if="loggedinUser">
+  <section class="home main-layout" v-if="loggedinUser">
     <lottie-player src="../../src/assets/lottie/home-lottie-animation.json" class="lottie lottie-bitcoin-animation" background="transparent" speed="1"
      loop autoplay>
     </lottie-player>
     <main v-if="loggedinUser">
-      <h2>Welcome {{loggedinUser.name}} your current balance is ₿{{loggedinUser.balance}}</h2>
-      <h2 v-if="rate">{{rate}}$</h2>
+      <h2>Welcome <span>{{loggedinUser.fullname}}</span> your current balance is <span>₿{{loggedinUser.balance}}</span></h2>
+      <br/>
+      <h2 v-if="rate" class="rate">current rate: <span>{{rate}}$</span></h2>
     </main>
   </section>
   <LoginSignup v-else/>

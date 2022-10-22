@@ -7,4 +7,23 @@
         z-index: -1;
     }
 
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        width: 150px;
+        padding-left: 78px;
+        font-family: livic-bold;
+        color: rgb(146, 146, 146);
+
+        span {
+            color: $clr-primary;
+        }
+        .rate {
+            padding-left: 20px;
+        }
+    }
+
 }
