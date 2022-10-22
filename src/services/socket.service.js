@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-import { userService } from './user.service'
+import { userService } from './userService'
 
 export const SOCKET_EMIT_SET_CONTACT_ID_CHANNEL = 'contact-set-channel'
 export const SOCKET_EMIT_SEND_CONTACT_CHANGES = 'contact-send-changes'

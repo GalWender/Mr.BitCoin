@@ -95,7 +95,6 @@ export default {
                 password: ev.target[2].value,
             }
             this.$store.dispatch({type: 'signup', user})
-            //fix no user first time 
 
         },
         async onLogin(ev) {

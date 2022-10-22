@@ -26,7 +26,7 @@ export default {
         if (contactId) {
             this.$store.dispatch({ type: 'loadContact', contactId })
         } else {
-            this.car = await contactService.getEmptyContact()
+            this.contact = await contactService.getEmptyContact()
         }
     }
 }

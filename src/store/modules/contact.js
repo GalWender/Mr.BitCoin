@@ -1,4 +1,7 @@
 import { contactService } from '../../services/contactService.js'
+export function getActionUpdateContact(contact) {
+    return { type: 'saveContact', contact }
+}
 export default {
     state: {
         contacts: [],
@@ -23,24 +26,24 @@ export default {
     },
     actions: {
         async loadContacts({ commit }) {
-            const contacts = await contactService.getContacts()
-            commit({ type: 'setContacts', contacts:[...contacts] })
+            const contacts = await contactService.query()
+            commit({ type: 'setContacts', contacts: [...contacts] })
         },
         async loadContact({ commit }, { contactId }) {
-            const contact = await contactService.getContactById(contactId)
-            commit({ type: 'setContact', contact:{...contact} })
+            const contact = await contactService.getById(contactId)
+            commit({ type: 'setContact', contact: { ...contact } })
         },
         async removeContact({ commit }, { contactId }) {
-            await contactService.deleteContact(contactId)
+            await contactService.remove(contactId)
             commit({ type: 'removeContact', contactId })
         },
         async saveContact({ commit }, { contact }) {
-            await contactService.saveContact(contact)
-            commit({ type: 'saveContact', contact:{...contact} })
-        }
+            await contactService.save(contact)
+            commit({ type: 'saveContact', contact: { ...contact } })
+        },
     },
     getters: {
         contacts(state) { return state.contacts },
-        contact(state) {return state.contact}
+        contact(state) { return state.contact }
     }
 }

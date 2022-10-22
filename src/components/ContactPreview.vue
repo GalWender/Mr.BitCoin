@@ -15,14 +15,20 @@
                     <EditSvg />
                 </RouterLink>
             </section>
+            <div class="btn-transfer-container">
+                <button class="btn btn-transfer" @click.prevent="openModal()">Transfer</button>
+            </div>
         </div>
     </RouterLink>
+    <SlotedModal @cancel="onCancel" @confirm="onConfirm" v-if="showModal"
+        class="transaction-modal" />
 </template>
 
 <script>
 import CloseSvg from '../assets/svg/close-icon.svg';
 import EditSvg from '../assets/svg/edit-icon.svg';
-import contact from '../store/modules/contact';
+// import contact from '../store/modules/contact';
+import SlotedModal from '@/components/SlotedModal.vue'
 
 export default {
     props: {
@@ -31,14 +37,34 @@ export default {
             required: true,
         }
     },
+    data() {
+        return {
+            showModal: false,
+        }
+    },
     methods: {
         onRemoveContact(contactId) {
             this.$emit('contact-removed', contactId)
         },
+        onCancel() {
+            console.log('Canceled')
+            this.showModal = false
+        },
+        onConfirm(input) {
+            this.$store.dispatch({ type: 'updateBalance', transDetail: { by: this.loggedinUser?.fullname, to: this.contact.name, amount: input } })
+            this.showModal = false
+        },
+        openModal() {
+            this.showModal = !this.showModal
+        },
+    },
+    computed: {
+        loggedinUser() { return this.$store.getters.loggedinUser }
     },
     components: {
         CloseSvg,
-        EditSvg
+        EditSvg,
+        SlotedModal,
     }
 }
 </script>

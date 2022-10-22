@@ -28,6 +28,7 @@ export const userService = {
     getById,
     remove,
     update,
+    updateBalance,
 }
 
 //?- Dev:
@@ -99,4 +100,12 @@ function saveLocalUser(user) {
 
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+}
+
+function updateBalance(transDetail) {
+    const user = getLoggedinUser()
+    if(user.balance < transDetail.amount) return user
+    user.balance -= transDetail.amount
+    user.transactions.push(transDetail)
+    return update(user).balance
 }

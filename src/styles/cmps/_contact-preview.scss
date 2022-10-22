@@ -20,14 +20,46 @@
 }
 
 .card {
-    margin: 50px;
+    margin-top: 50px;
+    margin-bottom: 35px;
     position: relative;
     width: 350px;
     height: 190px;
     background-color: $clr-item-bg;
     border-radius: 30px;
-    box-shadow: 0 0 25px black;
+    box-shadow: $box-shadow-small;
     transition: .5s;
+
+    .btn-transfer-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        list-style-type: none;
+    }
+
+    .btn-transfer {
+        width: fit-content;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 8px;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        list-style-type: none;
+        text-align: center;
+        background-color: $clr-primary;
+        font-size: 16px;
+
+        &:hover {
+            background-color: transparent;
+            outline: 2px solid $clr-primary;
+            color: $clr-primary;
+        }
+    }
 
     & .info {
         position: absolute;
@@ -47,9 +79,24 @@
         transform: translateY(200px);
         opacity: 0;
     }
-
+    
     &:hover .actions {
         transform: translateY(300px);
+        opacity: 1;
+    }
+
+    & .btn-transfer {
+        display: flex;
+        align-self: flex-start;
+        justify-content: center;
+        transition: .5s;
+        transform: translateY(225px);
+        opacity: 0;
+        
+    }
+
+    &:hover .btn-transfer {
+        transform: translateY(325px);
         opacity: 1;
     }
 }
@@ -72,7 +119,7 @@
     height: 150px;
     background-color: $clr-item-bg;
     border-radius: 30px;
-    box-shadow: 0 15px 50px black;
+    box-shadow: $box-shadow-large;
     transition: .5s;
 
     img {
