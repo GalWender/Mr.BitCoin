@@ -38,7 +38,7 @@ export default {
     // },
     data(){
         return {
-            input:null
+            input:0
         }
     },
     methods: {
